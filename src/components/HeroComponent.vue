@@ -150,7 +150,7 @@
 .hero__actions__buttons {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   width: 300px;
 }
 .hero__actions__button {
