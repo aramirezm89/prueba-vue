@@ -14,8 +14,14 @@
         </li>
       </ul>
       <div class="nav__actions">
-        <button class="main__button">Contratar</button>
-        <button class="menu__button">
+        <button
+          class="main__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90"
+        >
+          Contratar
+        </button>
+        <button
+          class="menu__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90"
+        >
           <img src="@/assets/menu-icon.svg" alt="menu" />
         </button>
       </div>
