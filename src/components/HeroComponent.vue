@@ -1,10 +1,12 @@
 <template>
   <div class="hero">
     <div
-      class="w-100 h-[48px] p-[12px 30px] flex justify-center items-center backdrop-filter[blur(12px)] gap-[1rem]"
+      class="w-100 h-[48px] p-[12px 30px] flex justify-center items-center gap-[1rem] bg-[#1a1e8980] backdrop-blur-[12px]"
     >
       <img src="@/assets/car-icon.svg" alt="" />
-      <p class="text-[14px] text-[#ffffff]">¡Contrata hoy y obtén los mejores beneficios</p>
+      <p class="text-[14px] lg:text-[20px] text-[#ffffff] font-normal">
+        ¡Contrata hoy y obtén <span class="font-bold">los mejores beneficios</span>
+      </p>
     </div>
 
     <div class="hero__content">
@@ -15,26 +17,62 @@
 
         <source srcset="@/assets/hero-lg.svg" media="(min-width: 1024px)" />
 
-        <img src="@/assets/hero-lg.svg" alt="Descripción de la imagen adaptable" loading="lazy" />
+        <img
+          class="hero__img-lg"
+          src="@/assets/hero-lg.svg"
+          alt="Descripción adaptable"
+          loading="lazy"
+        />
       </picture>
 
       <div class="hero__actions">
-        <p>Hazte cliente empresa del Banco de Chile y obtén tu producto a costo $0*</p>
+        <p class="font-normal">
+          Hazte cliente empresa del Banco de Chile
+          <span class="font-bold">y obtén tu producto a costo $0*</span>
+        </p>
 
         <div class="hero__actions__buttons">
-          <button @click="prueba" class="hero__actions__button">Qiero Contratar</button>
+          <button class="hero__actions__button">Qiero Contratar</button>
           <button class="hero__actions__button">Nuestras Tarifas</button>
+        </div>
+
+        <div class="hero__controls--lg">
+          <div class="hero__controls__buttons">
+            <button>
+              <img src="@/assets/arrow-left.svg" alt="" />
+            </button>
+            <button>
+              <img src="@/assets/arrow-right.svg" alt="" />
+            </button>
+          </div>
+          <div>
+            <button>
+              <img src="@/assets/paly-icon.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__controls">
+        <div class="hero__controls__buttons">
+          <button>
+            <img src="@/assets/arrow-left.svg" alt="" />
+          </button>
+          <button>
+            <img src="@/assets/arrow-right.svg" alt="" />
+          </button>
+        </div>
+        <div>
+          <button>
+            <img src="@/assets/paly-icon.svg" alt="" />
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-const prueba = () => {
-  console.log('shot')
-}
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .hero {
@@ -56,6 +94,7 @@ const prueba = () => {
   background-size: auto;
   background-repeat: no-repeat;
   background-position: right top 0;
+  pointer-events: none; /* This allows clicks to pass through to elements below */
 }
 
 .hero__content {
@@ -96,12 +135,110 @@ const prueba = () => {
 }
 .hero__actions__button {
   height: 56;
-
+  font-size: 14px;
+  font-weight: 700;
   border-radius: 260px;
   padding-top: 16px;
   padding-right: 24px;
   padding-bottom: 16px;
   padding-left: 24px;
   background-color: #32fadd;
+  text-transform: uppercase;
+}
+
+.hero__actions__button:nth-child(2) {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+}
+
+.hero__controls {
+  width: 192px;
+  height: 56px;
+  margin: 0 auto;
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+}
+.hero__controls__buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.hero__controls--lg {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    height: 584px;
+  }
+
+  .hero::before {
+    background-image: url('@/assets/rectangule-md.svg');
+  }
+
+  .hero__content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hero__img {
+    order: 2;
+    width: 50%;
+  }
+  .hero__actions {
+    order: 1;
+    width: 50%;
+  }
+
+  .hero__controls {
+    order: 3;
+  }
+
+  .hero__controls--lg {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  .hero__content {
+    width: 90%;
+    margin-top: 0;
+    margin-right: 0;
+  }
+  .hero::before {
+    background-image: url('@/assets/rectangule-lg.svg');
+  }
+
+  .hero__img {
+    order: 2;
+    width: 60%;
+  }
+  .hero__actions {
+    order: 1;
+    width: 35%;
+    font-size: 40px;
+    text-align: start;
+  }
+  .hero__actions__buttons {
+    flex-direction: row;
+    width: 100%;
+  }
+  .hero__actions__button {
+    min-width: 198px;
+  }
+
+  .hero__controls {
+    display: none;
+  }
+
+  .hero__controls--lg {
+    display: flex;
+    order: 3;
+    align-self: flex-start;
+    padding-top: 80px;
+  }
+  .hero__img-lg {
+    height: 554px;
+  }
 }
 </style>

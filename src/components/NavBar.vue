@@ -1,7 +1,18 @@
 <template>
   <nav class="nav">
     <div class="nav__container">
-      <img src="@/assets/main-logo.svg" alt="" />
+      <img src="@/assets/main-logo.svg" alt="" class="nav__logo" />
+      <ul class="nav__links">
+        <li class="font-light hover:font-bold">
+          <router-link to="#">Productos y Tarifas</router-link>
+        </li>
+        <li class="font-light hover:font-bold">
+          <router-link to="#">COMO CONTRATAR</router-link>
+        </li>
+        <li class="font-light hover:font-bold">
+          <router-link to="#">beneficios</router-link>
+        </li>
+      </ul>
       <div class="nav__actions">
         <button class="main__button">Contratar</button>
         <button class="menu__button">
@@ -23,6 +34,12 @@
   justify-content: center;
   padding: 24px 15px;
 }
+
+.nav__logo {
+  width: 128px;
+  height: 16px;
+}
+
 .nav__container {
   width: 100%;
 
@@ -52,5 +69,46 @@
 .nav__actions {
   display: flex;
   gap: 16px;
+}
+.nav__link {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.nav__links {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav__container {
+    width: 95%;
+  }
+  .nav__links {
+    display: flex;
+    gap: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    line-height: 24px;
+  }
+
+  .menu__button {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav__container {
+    width: 90%;
+  }
+  .nav__links {
+    gap: 48px;
+  }
+
+  .nav__logo {
+    width: 164px;
+    height: 21px;
+  }
 }
 </style>
