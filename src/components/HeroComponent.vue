@@ -26,9 +26,16 @@
       </picture>
 
       <div class="hero__actions">
-        <p class="font-normal">
-          Hazte cliente empresa del Banco de Chile
-          <span class="font-bold">y obtén tu producto a costo $0*</span>
+        <p class="font-normal" :key="currentSlideIndex">
+          <transition name="slide-fade">
+            <span v-if="currentSlide.type === 'default'">
+              Hazte cliente empresa del Banco de Chile
+              <span class="font-bold">y obtén tu producto a costo $0*</span>
+            </span>
+            <span v-else>
+              Conoce a <span class="font-bold">{{ currentSlide.content }}</span>
+            </span>
+          </transition>
         </p>
 
         <div class="hero__actions__buttons">
@@ -48,11 +55,13 @@
           <div class="hero__controls__buttons">
             <button
               class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+              @click="prevSlide"
             >
               <img src="@/assets/arrow-left.svg" alt="" />
             </button>
             <button
               class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+              @click="nextSlide"
             >
               <img src="@/assets/arrow-right.svg" alt="" />
             </button>
@@ -60,8 +69,10 @@
           <div>
             <button
               class="w-[56px] h-[56px] flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2"
+              @click="toggleAutoSlide"
             >
-              <img src="@/assets/play-icon.svg" alt="" />
+              <img v-if="isPlaying" src="@/assets/pause-icon.svg" alt="" />
+              <span v-else class="material-symbols-outlined"> play_arrow </span>
             </button>
           </div>
         </div>
@@ -71,11 +82,13 @@
         <div class="hero__controls__buttons">
           <button
             class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+            @click="prevSlide"
           >
             <img src="@/assets/arrow-left.svg" alt="" />
           </button>
           <button
             class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+            @click="nextSlide"
           >
             <img src="@/assets/arrow-right.svg" alt="" />
           </button>
@@ -83,8 +96,10 @@
         <div>
           <button
             class="w-[56px] h-[56px] flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2"
+            @click="toggleAutoSlide"
           >
-            <img src="@/assets/play-icon.svg" alt="" />
+            <img v-if="isPlaying" src="@/assets/pause-icon.svg" alt="" />
+            <span v-else class="material-symbols-outlined"> play_arrow </span>
           </button>
         </div>
       </div>
@@ -93,10 +108,63 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed, onBeforeUnmount } from 'vue'
 import { getPokemons } from '@/api/pokeapi'
 
 const pokemons = ref([])
+const currentSlideIndex = ref(0)
+const isPlaying = ref(true)
+const slideInterval = ref(null)
+
+// Slides array combining default text and pokemons
+const slides = computed(() => {
+  const defaultSlide = { type: 'default', content: 'default' }
+  const pokemonSlides = pokemons.value.map((pokemon) => ({
+    type: 'pokemon',
+    content: pokemon.name,
+  }))
+
+  return [defaultSlide, ...pokemonSlides]
+})
+
+// Current slide based on index
+const currentSlide = computed(() => {
+  return slides.value[currentSlideIndex.value] || { type: 'default', content: 'default' }
+})
+
+// Functions to control the slider
+const nextSlide = () => {
+  currentSlideIndex.value = (currentSlideIndex.value + 1) % slides.value.length
+}
+
+const prevSlide = () => {
+  currentSlideIndex.value =
+    (currentSlideIndex.value - 1 + slides.value.length) % slides.value.length
+}
+
+const startAutoSlide = () => {
+  if (slideInterval.value) clearInterval(slideInterval.value)
+  slideInterval.value = setInterval(() => {
+    nextSlide()
+  }, 2000) // Change slide every 3 seconds
+}
+
+const stopAutoSlide = () => {
+  if (slideInterval.value) {
+    clearInterval(slideInterval.value)
+    slideInterval.value = null
+  }
+}
+
+const toggleAutoSlide = () => {
+  isPlaying.value = !isPlaying.value
+  if (isPlaying.value) {
+    startAutoSlide()
+  } else {
+    stopAutoSlide()
+  }
+}
+
 onMounted(async () => {
   pokemons.value = await getPokemons()
     .then((res) => {
@@ -104,6 +172,14 @@ onMounted(async () => {
       return res.data.results
     })
     .catch((err) => console.log(err))
+
+  // Start auto sliding when component is mounted
+  startAutoSlide()
+})
+
+onBeforeUnmount(() => {
+  // Clean up interval when component is unmounted
+  stopAutoSlide()
 })
 </script>
 
@@ -295,5 +371,15 @@ onMounted(async () => {
   .hero__actions__button:nth-child(2) {
     width: 206px;
   }
+}
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
