@@ -113,7 +113,7 @@
   background: url('@/assets/rectangule.svg');
   background-size: auto;
   background-repeat: no-repeat;
-  background-position: right top 0;
+  background-position: right top -100px;
   pointer-events: none; /* This allows clicks to pass through to elements below */
 }
 
