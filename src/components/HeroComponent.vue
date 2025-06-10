@@ -26,17 +26,21 @@
       </picture>
 
       <div class="hero__actions">
-        <p class="font-normal" :key="currentSlideIndex">
+        <div class="hero-text-container" :key="currentSlideIndex">
           <transition name="slide-fade">
-            <span v-if="currentSlide.type === 'default'">
-              Hazte cliente empresa del Banco de Chile
-              <span class="font-bold">y obtén tu producto a costo $0*</span>
-            </span>
-            <span v-else>
-              Conoce a <span class="font-bold">{{ currentSlide.content }}</span>
-            </span>
+            <div v-if="currentSlide.type === 'default'" class="hero-text">
+              <p class="font-normal">
+                Hazte cliente empresa del Banco de Chile
+                <span class="font-bold">y obtén tu producto a costo $0*</span>
+              </p>
+            </div>
+            <div v-else class="hero-text">
+              <p class="font-normal">
+                Conoce a <span class="font-bold">{{ currentSlide.content }}</span>
+              </p>
+            </div>
           </transition>
-        </p>
+        </div>
 
         <div class="hero__actions__buttons">
           <button
@@ -381,5 +385,24 @@ onBeforeUnmount(() => {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+
+.hero-text-container {
+  width: 100%;
+}
+
+.hero-text {
+  width: 100%;
+}
+
+.hero-text p {
+  text-align: left;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .hero-text p {
+    text-align: center;
+  }
 }
 </style>
