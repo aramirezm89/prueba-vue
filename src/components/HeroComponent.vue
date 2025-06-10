@@ -32,8 +32,16 @@
         </p>
 
         <div class="hero__actions__buttons">
-          <button class="hero__actions__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90">Qiero Contratar</button>
-          <button class="hero__actions__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90">Nuestras Tarifas</button>
+          <button
+            class="hero__actions__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90"
+          >
+            Qiero Contratar
+          </button>
+          <button
+            class="hero__actions__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90"
+          >
+            Nuestras Tarifas
+          </button>
         </div>
 
         <div class="hero__controls--lg">
@@ -51,9 +59,9 @@
           </div>
           <div>
             <button
-              class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+              class="w-[56px] h-[56px] flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2"
             >
-              <img src="@/assets/paly-icon.svg" alt="" />
+              <img src="@/assets/play-icon.svg" alt="" />
             </button>
           </div>
         </div>
@@ -74,9 +82,9 @@
         </div>
         <div>
           <button
-            class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+            class="w-[56px] h-[56px] flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2"
           >
-            <img src="@/assets/paly-icon.svg" alt="" />
+            <img src="@/assets/play-icon.svg" alt="" />
           </button>
         </div>
       </div>
@@ -92,7 +100,7 @@
   height: 729px;
   border-radius: 0 0 48px 48px;
   background:
-    linear-gradient(0deg, #3e3cf0, #3e3cf0),
+    linear-gradient(0deg, #1a1e89, #3e3cf0),
     linear-gradient(0deg, rgba(26, 30, 137, 0.8) 0%, rgba(26, 30, 137, 0) 100%);
   position: relative;
 }
@@ -174,6 +182,21 @@
 .hero__controls__buttons {
   display: flex;
   gap: 12px;
+
+  button {
+    width: 56px;
+    height: 56px;
+    border-radius: 43px;
+    background-color: #0a1861cc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .hero__controls--lg {
@@ -248,6 +271,7 @@
     order: 3;
     align-self: flex-start;
     padding-top: 80px;
+    gap: 12px;
   }
   .hero__img-lg {
     height: 554px;
