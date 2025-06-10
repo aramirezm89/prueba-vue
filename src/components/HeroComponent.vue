@@ -76,7 +76,7 @@
               @click="toggleAutoSlide"
             >
               <img v-if="isPlaying" src="@/assets/pause-icon.svg" alt="" />
-              <span v-else class="material-symbols-outlined"> play_arrow </span>
+              <span v-else class="material-symbols-outlined text-gray-200"> play_arrow </span>
             </button>
           </div>
         </div>
@@ -103,7 +103,7 @@
             @click="toggleAutoSlide"
           >
             <img v-if="isPlaying" src="@/assets/pause-icon.svg" alt="" />
-            <span v-else class="material-symbols-outlined"> play_arrow </span>
+            <span v-else class="material-symbols-outlined text-gray-200"> play_arrow </span>
           </button>
         </div>
       </div>
