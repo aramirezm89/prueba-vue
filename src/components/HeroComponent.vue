@@ -113,7 +113,7 @@
   background: url('@/assets/rectangule.svg');
   background-size: auto;
   background-repeat: no-repeat;
-  background-position: right top -100px;
+  background-position: right top -50px;
   pointer-events: none; /* This allows clicks to pass through to elements below */
 }
 
@@ -210,6 +210,7 @@
 
   .hero::before {
     background-image: url('@/assets/rectangule-md.svg');
+    background-position: right top -85px;
   }
 
   .hero__content {
@@ -242,6 +243,7 @@
   }
   .hero::before {
     background-image: url('@/assets/rectangule-lg.svg');
+    background-position: right top -75px;
   }
 
   .hero__img {
