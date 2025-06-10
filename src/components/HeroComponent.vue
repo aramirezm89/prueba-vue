@@ -92,7 +92,20 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted, ref } from 'vue'
+import { getPokemons } from '@/api/pokeapi'
+
+const pokemons = ref([])
+onMounted(async () => {
+  pokemons.value = await getPokemons()
+    .then((res) => {
+      console.log(res)
+      return res.data.results
+    })
+    .catch((err) => console.log(err))
+})
+</script>
 
 <style lang="scss" scoped>
 .hero {
