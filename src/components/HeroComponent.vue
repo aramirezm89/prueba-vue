@@ -32,21 +32,27 @@
         </p>
 
         <div class="hero__actions__buttons">
-          <button class="hero__actions__button">Qiero Contratar</button>
-          <button class="hero__actions__button">Nuestras Tarifas</button>
+          <button class="hero__actions__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90">Qiero Contratar</button>
+          <button class="hero__actions__button transition-transform duration-200 hover:scale-105 active:scale-95 hover:bg-opacity-90">Nuestras Tarifas</button>
         </div>
 
         <div class="hero__controls--lg">
           <div class="hero__controls__buttons">
-            <button>
+            <button
+              class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+            >
               <img src="@/assets/arrow-left.svg" alt="" />
             </button>
-            <button>
+            <button
+              class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+            >
               <img src="@/assets/arrow-right.svg" alt="" />
             </button>
           </div>
           <div>
-            <button>
+            <button
+              class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+            >
               <img src="@/assets/paly-icon.svg" alt="" />
             </button>
           </div>
@@ -55,15 +61,21 @@
 
       <div class="hero__controls">
         <div class="hero__controls__buttons">
-          <button>
+          <button
+            class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+          >
             <img src="@/assets/arrow-left.svg" alt="" />
           </button>
-          <button>
+          <button
+            class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+          >
             <img src="@/assets/arrow-right.svg" alt="" />
           </button>
         </div>
         <div>
-          <button>
+          <button
+            class="transition-transform duration-200 hover:scale-110 active:scale-95 hover:bg-gray-100/20 p-2 rounded-full"
+          >
             <img src="@/assets/paly-icon.svg" alt="" />
           </button>
         </div>
