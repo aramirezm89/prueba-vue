@@ -276,5 +276,9 @@
   .hero__img-lg {
     height: 554px;
   }
+
+  .hero__actions__button:nth-child(2) {
+    width: 206px;
+  }
 }
 </style>
